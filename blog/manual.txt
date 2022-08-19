@@ -48,3 +48,36 @@ def index():
 2.4 .slaskenv :
 
 FLASK_APP=main.py
+
+# TEMPLATES
+
+1. Create branch templates:
+
+git checkout -b templates
+
+2. Create template folders and html files:
+app.static
+app.templates
+- base.html
+- index.html
+
+3. Add block to base and fill index data
+4. routes.py :
+
+main_rout = Blueprint('main_rout', __name__,
+                      template_folder='templates',
+                      static_folder='static')
+
+def index():
+    user = {'username': 'Serhii'}
+    posts = [
+        {
+            'author': {'username': 'Serhii'},
+            'body': 'Beautiful day in Ukraine!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
+        }
+    ]
+    return render_template('index.html', title='Home', user=user, posts=posts)
