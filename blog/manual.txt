@@ -1,0 +1,50 @@
+#Arch folder structure
+
+FlaskStupns ↓  ## repos
+- requirements.txt
+- .gitignore
+- blog ↓
+- - config.py
+- - main.py
+- - .flaskenv
+- - app ↓
+- - - __init__.py
+- - - routes.py
+
+
+
+
+
+1. pip install flask, python-dotenv
+1.1 add libs to requirements
+1.2 update .gitignore
+2. main.py :
+
+from app import app
+
+2.1 config.py :
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+2.2 app.__init__.py :
+
+from flask import Flask
+from app.routes import main_rout
+
+app = Flask(__name__)
+app.register_blueprint(main_rout)
+
+2.3 app.routes.py :
+
+from flask import Blueprint
+main_rout = Blueprint('main_rout', __name__)
+
+
+@main_rout.route('/')
+@main_rout.route('/index')
+def index():
+    return "Hello, World!"
+
+2.4 .slaskenv :
+
+FLASK_APP=main.py
