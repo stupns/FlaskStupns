@@ -81,3 +81,17 @@ def index():
         }
     ]
     return render_template('index.html', title='Home', user=user, posts=posts)
+
+5.1 GIT:
+
+git add *
+git commit
+git push origin templates
+
+git checkout master
+git merge templates
+git push origin master
+
+# Web forms:
+
+pip install flask-wtf
