@@ -173,3 +173,4 @@ Open Console Python
 >>> u = User(username='john', email='john@example.com')
 >>> db.session.add(u)
 >>> db.session.commit()
+>>> User.query.all()
