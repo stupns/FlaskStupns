@@ -174,3 +174,143 @@ Open Console Python
 >>> db.session.add(u)
 >>> db.session.commit()
 >>> User.query.all()
+
+6.5 GIT:
+
+git add *
+git commit
+git push origin branch-db
+
+git checkout master
+git merge branch-db
+git push origin master
+
+7.0  USER LOGINS
+
+git checkout -b branch-login
+
+7.1 Password Hashing
+
+shell :
+'
+>>> u = User(username='susan', email='susan@example.com')
+>>> u.set_password('mypassword')
+>>> u.check_password('anotherpassword')
+False
+>>> u.check_password('mypassword')
+True
+'
+
+7.2 Pip install
+
+pip install flask-login
+
+app/__init__.py: Flask-Login initialization
+
+7.3 Update models:
+
+app/models.py: Flask-Login user mixin class
+
+# ...
+from flask_login import UserMixin
+
+class User(UserMixin, db.Model):
+    # ...
+
+7.4 Update routes:
+app/routes.py: Login view function logic
+@main_rout.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main_rout.index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('main_rout.login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('main_rout.index'))
+    return render_template('login.html', title='Sign In', form=form)
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+7.5 Logging Users Out
+
+app/routes.py: Logout view function
+
+# ...
+from flask_login import logout_user
+
+# ...
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main_rout.index'))
+
+7.6 Templates
+
+app/templates/base.html: Conditional login and logout links
+
+    <div>
+        Microblog:
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
+
+7.7 Requiring Users To Login
+
+from flask import request
+from werkzeug.urls import url_parse
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    from app.models import User
+    # ...
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+    # ...
+
+    User Registration
+
+app/forms.py: User registration form
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from app.models import User
+
+# ...
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Register')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different email address.')
