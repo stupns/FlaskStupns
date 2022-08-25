@@ -16,6 +16,7 @@
     {% else %}
     <a href="{{ url_for('main_rout.user', username=current_user.username) }}">Profile</a>
     <a href="{{ url_for('main_rout.logout') }}">Logout</a>
+    <a href="{{ url_for('main_rout.explore') }}">Explore</a>
     {% endif %}
 </div>
 <hr>
@@ -28,6 +29,7 @@
 </ul>
 {% endif %}
 {% endwith %}
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 </body>
 </html>
