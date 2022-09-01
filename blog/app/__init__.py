@@ -3,6 +3,7 @@ import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
 from flask import Flask
+from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -48,4 +49,5 @@ if not app.debug:
         app.logger.info('App startup')
 
 mail = Mail(app)
+bootstrap = Bootstrap(app)
 from app import models, routes, errors

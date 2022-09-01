@@ -1,0 +1,98 @@
+2022-09-01 11:15:22,549 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:20:48,188 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:26:26,751 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:27:24,079 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:33:46,025 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:35:33,200 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:36:02,163 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:37:01,534 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 11:37:50,970 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:48]
+2022-09-01 12:15:01,470 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:49]
+2022-09-01 12:15:07,334 ERROR: Exception on /login [GET] [in P:\environment\Flask\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "P:\Flask\FlaskStupns\blog\app\routes.py", line 70, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "P:\environment\Flask\lib\site-packages\flask\templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "P:\environment\Flask\lib\site-packages\flask\templating.py", line 130, in _render
+    rv = template.render(context)
+  File "P:\environment\Flask\lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "P:\environment\Flask\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "P:\Flask\FlaskStupns\blog\app\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "P:\Flask\FlaskStupns\blog\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block 'html'
+    {% block body -%}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 21, in block 'body'
+    {% block navbar %}
+  File "P:\Flask\FlaskStupns\blog\app\templates\base.html", line 22, in block 'navbar'
+    <li><a href="{{ url_for('main.index') }}">Home</a></li>
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2031, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2020, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "P:\environment\Flask\lib\site-packages\werkzeug\routing\map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.index'. Did you mean 'main_rout.index' instead?
+2022-09-01 12:16:33,463 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:49]
+2022-09-01 12:16:50,783 ERROR: Exception on /index [GET] [in P:\environment\Flask\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "P:\environment\Flask\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "P:\Flask\FlaskStupns\blog\app\routes.py", line 43, in index
+    return render_template('index.html', title='Home', form=form,
+  File "P:\environment\Flask\lib\site-packages\flask\templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "P:\environment\Flask\lib\site-packages\flask\templating.py", line 130, in _render
+    rv = template.render(context)
+  File "P:\environment\Flask\lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "P:\environment\Flask\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "P:\Flask\FlaskStupns\blog\app\templates\index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "P:\Flask\FlaskStupns\blog\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block 'html'
+    {% block body -%}
+  File "P:\environment\Flask\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block 'body'
+    {% block content -%}
+  File "P:\Flask\FlaskStupns\blog\app\templates\index.html", line 11, in block 'content'
+    {% include '_post.html' %}
+  File "P:\Flask\FlaskStupns\blog\app\templates\_post.html", line 9, in top-level template code
+    <a href="{{ url_for('user', username=post.author.username) }}">
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2031, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "P:\environment\Flask\lib\site-packages\flask\app.py", line 2020, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "P:\environment\Flask\lib\site-packages\werkzeug\routing\map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'main_rout.user' instead?
+2022-09-01 12:24:06,940 INFO: App startup [in P:\Flask\FlaskStupns\blog\app\__init__.py:49]
