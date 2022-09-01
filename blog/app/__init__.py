@@ -6,6 +6,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_migrate import Migrate
+from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from app.routes import main_rout
@@ -50,4 +51,5 @@ if not app.debug:
 
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+moment = Moment(app)
 from app import models, routes, errors
