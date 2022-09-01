@@ -3,13 +3,14 @@ import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
 from flask import Flask
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from app.routes import main_rout
 from config import Config
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.register_blueprint(main_rout)
 app.config.from_object(Config)
 
@@ -46,4 +47,5 @@ if not app.debug:
         app.logger.setLevel(logging.INFO)
         app.logger.info('App startup')
 
+mail = Mail(app)
 from app import models, routes, errors
