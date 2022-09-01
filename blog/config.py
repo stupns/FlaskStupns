@@ -18,3 +18,4 @@ class Config(object):
     MAIL_USE_SSL = False
     ADMINS = ['your-email@example.com']
     POSTS_PER_PAGE = 25
+    LANGUAGES = ['en', 'uk']
